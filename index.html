@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+    </body>
+    <script>
+
+
+        function computerPlay(){
+            // Computer Play
+           let select = ["Rock", "Scissors", "Paper"]
+           let play = select[Math.floor(Math.random()*select.length)];
+           return play;
+        }
+
+        function playRound(mySelection, computerSelection){
+
+            // Selection Prompt
+
+            mySelection = prompt("Rock Paper Scissors: ")
+            computerSelection = computerPlay()
+
+            // Changing my selection first letter to Upper Case and the rest to Lower Case
+
+            let str = mySelection.toLowerCase().split(" ")
+            for (let i = 0; i < str.length; i++){
+                str[i] = str[i].charAt(0).toUpperCase() + str[i].substring(1)
+            }
+            mySelection = str.join(" ")
+            
+            // Selection Conditions
+
+            if(mySelection === computerSelection ){
+            return "Draw!"  
+            } else if (mySelection != computerSelection ){
+                if((mySelection === "Paper") && (computerSelection === "Scissors")){
+                return "You lose!"
+                } else if ((mySelection === "Scissors") && (computerSelection === "Rock")){
+                return "You lose!"
+                } else if ((mySelection === "Rock") && (computerSelection === "Paper")){
+                return "You lose!"
+                } else if((computerSelection === "Paper") && (mySelection === "Scissors")){
+                return "You win!"
+                } else if ((computerSelection === "Scissors") && (mySelection === "Rock")){
+                return "You win!"
+                } else if ((computerSelection === "Rock") && (mySelection === "Paper")){
+                return "You win!"
+                } else {
+                return "Try again"
+                }
+            } else{
+            return mySelection
+            }
+        }
+
+        
+ 
+        function game(){
+        
+            let myScore = 0
+            let computerScore = 0
+
+            // Looping the game to play five times and also record scores
+
+            for(let gameCount = 0; gameCount < 5; gameCount++){
+          
+                let roundCount = playRound()
+                if (roundCount === "You win!"){
+                    myScore +=1
+                    console.log("You win!")
+                    console.log("Game Score: Player: " + myScore + " vs Computer: " + computerScore + " ")
+                } else if (roundCount === "You lose!"){
+                    computerScore +=1
+                    console.log("You lose!")
+                    console.log("Game Score: Player: " + myScore + " vs Computer: " + computerScore + " ")
+                } else {
+                    myScore = myScore
+                    computerScore = computerScore
+                    console.log("Tie!")
+                    console.log("Game Score: Player: " + myScore + " vs Computer: " + computerScore + " ")
+                }
+          
+            }
+
+            // Tells the winner
+            console.log("Final Game Score: Player: " + myScore + " vs Computer: " + computerScore + " ")
+            if (myScore > computerScore){
+                return "Player wins!"
+            } else if (computerScore > myScore){
+                return "Player lose!"
+            } else if (myScore === computerScore) {
+                return "It's a tie!"
+            } else{
+                return "Something must have gone wrong"
+            }
+      
+          
+        }
+        console.log(game())
+    
+    </script>
+</html>
